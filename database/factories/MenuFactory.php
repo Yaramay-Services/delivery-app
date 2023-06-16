@@ -17,7 +17,12 @@ class MenuFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'menu_name' => $this->faker->word(),
+            'price' => $this->faker->numberBetween(100, 200),
+            'selling_price' => $this->faker->numberBetween(100, 200),
+            'display_order' => 0,
+            'is_published' => 0,
+            'hits' => 0,
         ];
     }
 }

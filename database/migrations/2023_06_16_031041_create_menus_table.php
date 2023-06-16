@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('business_id')->constrained();
             $table->string('menu_name');
             $table->float('price');
             $table->float('selling_price');
