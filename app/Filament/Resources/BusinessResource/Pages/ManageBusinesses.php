@@ -4,9 +4,9 @@ namespace App\Filament\Resources\BusinessResource\Pages;
 
 use App\Filament\Resources\BusinessResource;
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ManageRecords;
 
-class ListBusinesses extends ListRecords
+class ManageBusinesses extends ManageRecords
 {
     protected static string $resource = BusinessResource::class;
 

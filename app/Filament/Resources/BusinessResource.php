@@ -2,16 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BusinessResource\Pages;
-use App\Filament\Resources\BusinessResource\RelationManagers;
-use App\Models\Business;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use App\Models\Business;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\BusinessResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\BusinessResource\RelationManagers;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class BusinessResource extends Resource
 {
@@ -23,7 +28,16 @@ class BusinessResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('business_name')->columnSpanFull()->required(),
+                TextInput::make('longitude')->required(),
+                TextInput::make('latitude')->required(),
+                TextInput::make('city'),
+                TextInput::make('postal'),
+                TextArea::make('address')->columnSpanFull(),
+                SpatieMediaLibraryFileUpload::make('banner')
+                    ->columnSpanFull()
+                    ->responsiveImages()
+                    ->image()
             ]);
     }
 
@@ -31,32 +45,24 @@ class BusinessResource extends Resource
     {
         return $table
             ->columns([
-                //
+                SpatieMediaLibraryImageColumn::make('banner')
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBusinesses::route('/'),
-            'create' => Pages\CreateBusiness::route('/create'),
-            'edit' => Pages\EditBusiness::route('/{record}/edit'),
+            'index' => Pages\ManageBusinesses::route('/'),
         ];
-    }    
+    }
 }

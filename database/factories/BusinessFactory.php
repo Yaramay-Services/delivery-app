@@ -17,7 +17,12 @@ class BusinessFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'business_name' => $this->faker->company(),
+            'address' => $this->faker->address(),
+            'city' => $this->faker->city(),
+            'postal' => $this->faker->postcode(),
+            'longitude' => 14.3271819,
+            'latitude' => 120.9408174
         ];
     }
 }
