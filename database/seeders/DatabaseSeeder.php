@@ -7,6 +7,8 @@ namespace Database\Seeders;
 use App\Models\Menu;
 use App\Models\User;
 use App\Models\Business;
+use App\Models\MenuCategory;
+use App\Models\OpeningHour;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,6 +25,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        Business::factory(10)->has(Menu::factory(20))->create();
+        Business::factory(10)
+            ->has(Menu::factory(20)->has(MenuCategory::factory()))
+            ->has(OpeningHour::factory())
+            ->create();
     }
 }

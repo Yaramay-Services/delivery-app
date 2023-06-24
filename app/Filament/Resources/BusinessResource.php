@@ -8,35 +8,35 @@ use App\Models\Business;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BusinessResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\BusinessResource\RelationManagers;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use App\Filament\Resources\BusinessResource\RelationManagers;
+use App\Filament\Resources\BusinessResource\RelationManagers\MenuRelationManager;
+use App\Filament\Resources\BusinessResource\RelationManagers\OpeningHoursRelationManager;
 
 class BusinessResource extends Resource
 {
     protected static ?string $model = Business::class;
-
     protected static ?string $navigationGroup = 'Manage Business';
-
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('business_name')->columnSpanFull()->required(),
-                TextInput::make('longitude')->required(),
-                TextInput::make('latitude')->required(),
-                TextInput::make('city'),
-                TextInput::make('postal'),
-                TextArea::make('address')->columnSpanFull(),
+                Forms\Components\TextInput::make('business_name')
+                    ->columnSpanFull()
+                    ->required(),
+                Forms\Components\TextInput::make('city'),
+                Forms\Components\TextInput::make('postal'),
+                Forms\Components\TextInput::make('longitude')
+                    ->required(),
+                Forms\Components\TextInput::make('latitude')
+                    ->required(),
+                Forms\Components\Textarea::make('address')->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('banner')
                     ->columnSpanFull()
                     ->responsiveImages()
@@ -49,8 +49,12 @@ class BusinessResource extends Resource
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('banner'),
-                TextColumn::make('business_name'),
-                TextColumn::make('city'),
+                Tables\Columns\TextColumn::make('business_name'),
+                Tables\Columns\TextColumn::make('city'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime(),
             ])
             ->filters([
                 //
@@ -64,10 +68,20 @@ class BusinessResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            MenuRelationManager::class,
+            OpeningHoursRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageBusinesses::route('/'),
+            'index' => Pages\ListBusinesses::route('/'),
+            'create' => Pages\CreateBusiness::route('/create'),
+            'edit' => Pages\EditBusiness::route('/{record}/edit'),
         ];
     }
 }

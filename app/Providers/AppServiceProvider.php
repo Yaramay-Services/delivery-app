@@ -25,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerNavigationGroups([
                 NavigationGroup::make()
                     ->label('Manage Business'),
-                NavigationGroup::make()
-                    ->label('Manage Menu'),
             ]);
         });
     }
