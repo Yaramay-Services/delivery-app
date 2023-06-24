@@ -2,18 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MenuResource\Pages;
-use App\Filament\Resources\MenuResource\RelationManagers;
-use App\Models\Menu;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use App\Models\Menu;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\MenuResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\MenuResource\RelationManagers;
+use Filament\Forms\Components\TextInput;
 
 class MenuResource extends Resource
 {
@@ -35,13 +37,29 @@ class MenuResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('menu_name'),
-                TextColumn::make('price'),
-                TextColumn::make('selling_price'),
+                TextColumn::make('business.business_name')->sortable(),
+                TextColumn::make('menu_name')->sortable(),
+                TextColumn::make('price')->sortable(),
+                TextColumn::make('selling_price')->sortable(),
                 ToggleColumn::make('is_published'),
             ])
             ->filters([
-                //
+                Filter::make('business_name')
+                    ->form([
+                        TextInput::make('business_name')
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['business_name'],
+                                fn (Builder $query, $data): Builder => $query->whereHas(
+                                    'business',
+                                    function ($q) use ($data) {
+                                        $q->where('business_name', 'like', "%$data%");
+                                    }
+                                ),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

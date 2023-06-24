@@ -17,6 +17,7 @@ use App\Filament\Resources\BusinessResource\RelationManagers;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\TextColumn;
 
 class BusinessResource extends Resource
 {
@@ -47,7 +48,9 @@ class BusinessResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('banner')
+                SpatieMediaLibraryImageColumn::make('banner'),
+                TextColumn::make('business_name'),
+                TextColumn::make('city'),
             ])
             ->filters([
                 //
