@@ -39,7 +39,7 @@ class MenuRelationManager extends RelationManager
                     ->multiple()
                     ->relationship('category', 'category_id')
                     ->options(MenuCategory::all()->pluck('category_name', 'id')),
-                SpatieMediaLibraryFileUpload::make('banner')
+                SpatieMediaLibraryFileUpload::make('banner')->collection('banner')
             ]);
     }
 
@@ -47,7 +47,7 @@ class MenuRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('banner'),
+                SpatieMediaLibraryImageColumn::make('banner')->collection('banner'),
                 Tables\Columns\TextColumn::make('menu_name'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('selling_price'),

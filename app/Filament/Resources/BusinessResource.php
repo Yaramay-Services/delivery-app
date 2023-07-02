@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\BusinessResource\RelationManagers;
+use App\Filament\Resources\BusinessResource\RelationManagers\MenuCategoryRelationManager;
 use App\Filament\Resources\BusinessResource\RelationManagers\MenuRelationManager;
 use App\Filament\Resources\BusinessResource\RelationManagers\OpeningHoursRelationManager;
 
@@ -83,6 +84,7 @@ class BusinessResource extends Resource
         return [
             MenuRelationManager::class,
             OpeningHoursRelationManager::class,
+            MenuCategoryRelationManager::class
         ];
     }
 

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Business::factory(10)
-            ->has(Menu::factory(20)->has(MenuCategory::factory()))
+            ->has(Menu::factory(20))
+            ->has(MenuCategory::factory(5))
             ->has(OpeningHour::factory())
             ->create();
     }

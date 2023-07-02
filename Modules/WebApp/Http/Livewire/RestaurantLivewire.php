@@ -32,4 +32,9 @@ class RestaurantLivewire extends Component
     {
         return view('webapp::livewire.restaurant-livewire')->layout('webapp::layouts.default');
     }
+
+    public function redirectTo($encryptedId)
+    {
+        return redirect()->route('menu', ['queryId' => $encryptedId]);
+    }
 }

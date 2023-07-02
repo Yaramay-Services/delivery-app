@@ -1,5 +1,4 @@
 <div>
-
     <section id="testimonial">
         <div class="container">
             <div class="row h-100">
@@ -9,7 +8,10 @@
             </div>
             <div class="row gx-2">
                 @foreach ($restaurants as $restaurant)
-                    <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 card-restaurant rounded-2">
+
+                    <a href="#" class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 card-restaurant rounded-2"
+                    wire:click='redirectTo("{{ encrypt($restaurant->id) }}")'
+                    >
                         <div class="card card-span h-100 text-white rounded-3">
                             @foreach ($restaurant->getMedia('banner') as $item)
                                 <img class="img-fluid rounded-3 h-100 m-2"
@@ -51,7 +53,7 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
