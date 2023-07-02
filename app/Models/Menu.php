@@ -28,6 +28,11 @@ class Menu extends Model implements HasMedia
         return $this->belongsTo(Business::class);
     }
 
+    public function menuCategory()
+    {
+        return $this->belongsToMany(MenuCategory::class);
+    }
+
     public function category()
     {
         return $this->belongsToMany(MenuCategory::class);

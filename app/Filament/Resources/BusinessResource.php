@@ -38,7 +38,17 @@ class BusinessResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('address')->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('banner')
-                    ->columnSpanFull()
+                    ->collection('banner')
+                    ->imageResizeTargetHeight(323)
+                    ->imageResizeTargetWidth(383)
+                    ->columnSpan(1)
+                    ->responsiveImages()
+                    ->image(),
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->collection('logo')
+                    ->imageResizeTargetHeight(64)
+                    ->imageResizeTargetWidth(64)
+                    ->columnSpan(1)
                     ->responsiveImages()
                     ->image()
             ]);
@@ -48,7 +58,7 @@ class BusinessResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('banner'),
+                SpatieMediaLibraryImageColumn::make('logo')->collection('logo'),
                 Tables\Columns\TextColumn::make('business_name'),
                 Tables\Columns\TextColumn::make('city'),
                 Tables\Columns\TextColumn::make('created_at')

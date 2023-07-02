@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('postal')->nullable();
             $table->string('longitude');
             $table->string('latitude');
+            $table->string('banner')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

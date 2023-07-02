@@ -26,13 +26,13 @@ class OpeningHoursRelationManager extends RelationManager
                 TextInput::make('closing'),
                 Select::make('day')
                     ->options([
-                        'Mon' => 'Monday',
-                        'Tue' => 'Tuesday',
-                        'Wed' => 'Wednesday',
-                        'Thu' => 'Thursday',
-                        'Fri' => 'Friday',
-                        'Sat' => 'Saturday',
-                        'Sun' => 'Sunday',
+                        'Monday' => 'Monday',
+                        'Tuesday' => 'Tuesday',
+                        'Wednesday' => 'Wednesday',
+                        'Thursday' => 'Thursday',
+                        'Friday' => 'Friday',
+                        'Saturday' => 'Saturday',
+                        'Sunday' => 'Sunday',
                     ])
                     ->required(),
             ]);

@@ -19,7 +19,7 @@ class OpeningHourFactory extends Factory
         return [
             'opening' => '09:00',
             'closing' => '17:00',
-            'day' => 'Mon'
+            'day' => 'Monday'
         ];
     }
 }

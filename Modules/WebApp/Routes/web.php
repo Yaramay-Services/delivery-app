@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Livewire\CatalogLivewire;
 use Illuminate\Support\Facades\Route;
+use Modules\WebApp\Http\Controllers\WebAppController;
+use Modules\WebApp\Http\Livewire\RestaurantLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::prefix('webapp')->group(function() {
-    Route::get('/', 'WebAppController@index');
+    Route::get('/', [WebAppController::class, 'index']);
+    Route::get('/restuarants', RestaurantLivewire::class)->name('restaurants');
+    Route::get('/catalog', CatalogLivewire::class)->name('catalog');
 });
