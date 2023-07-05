@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources\BusinessResource\RelationManagers;
 
-use App\Models\MenuCategory;
+use Closure;
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use App\Models\MenuCategory;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class MenuRelationManager extends RelationManager
 {
@@ -38,7 +39,10 @@ class MenuRelationManager extends RelationManager
                 Forms\Components\Select::make('menu_category_id')
                     ->multiple()
                     ->relationship('category', 'category_id')
-                    ->options(MenuCategory::all()->pluck('category_name', 'id')),
+                    ->options(function (RelationManager $livewire) {
+                        return MenuCategory::where('business_id', $livewire->ownerRecord->id)
+                            ->pluck('category_name', 'id');
+                    }),
                 SpatieMediaLibraryFileUpload::make('banner')->collection('banner')
             ]);
     }

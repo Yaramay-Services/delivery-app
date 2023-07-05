@@ -26,7 +26,6 @@ class MenuLivewire extends Component
                 $this->categories[$item->category_name] = $item->id;
             }
         });
-        dump($this->categories);
     }
 
     public function render()
