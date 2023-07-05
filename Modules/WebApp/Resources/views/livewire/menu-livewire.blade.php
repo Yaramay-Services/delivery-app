@@ -4,7 +4,7 @@
 
     <section class="py-3">
         <div class="container">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-sm-center overflow-scroll">
                 @foreach ($categories as $category)
                     <div>
                         <a href="#{{ $category['category_name'] }}" class="btn btn-primary ms-1">
@@ -20,13 +20,15 @@
                     </div>
                     <div class="row" id="{{ $category->category_name }}">
                         @foreach ($category->menu as $item)
-                            <div class="card d-flex flex-row col-md-3 py-2 shadow m-2" wire:click='loadMenu({{ $item->id }})'
-                            data-bs-toggle="modal" data-bs-target="#variationModal">
+                            <div class="card d-flex flex-row col-md-3 py-2 shadow m-2"
+                                wire:click='loadMenu({{ $item->id }})' data-bs-toggle="modal"
+                                data-bs-target="#variationModal">
                                 <div class="p-2 w-100 d-flex flex-column">
                                     <label class="fw-bold">{{ $item->menu_name }}</label>
                                     <label class="fw-muted">{{ Str::limit($item->description, 20) }}</label>
                                 </div>
-                                <img src="{{ $item->getMedia('banner')->first()?->getUrl() ?? config('media-library.placeholder') }}" alt="" width="90" height="90">
+                                <img src="{{ $item->getMedia('banner')->first()?->getUrl() ?? config('media-library.placeholder') }}"
+                                    alt="" width="90" height="90">
                             </div>
                         @endforeach
                     </div>
@@ -42,5 +44,9 @@
     .restuarant-banner {
         background-image: url("{{ $banner }}");
         min-height: 350px;
+    }
+
+    .overflow-scroll::-webkit-scrollbar {
+        display: none;
     }
 </style>
