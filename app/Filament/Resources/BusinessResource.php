@@ -16,6 +16,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\BusinessResource\RelationManagers;
 use App\Filament\Resources\BusinessResource\RelationManagers\MenuCategoryRelationManager;
 use App\Filament\Resources\BusinessResource\RelationManagers\MenuRelationManager;
+use App\Filament\Resources\BusinessResource\RelationManagers\MenuVariationRelationManager;
 use App\Filament\Resources\BusinessResource\RelationManagers\OpeningHoursRelationManager;
 use App\Filament\Resources\BusinessResource\RelationManagers\VariationCategoryRelationManager;
 use App\Models\VariationCategory;
@@ -81,9 +82,10 @@ class BusinessResource extends Resource
     {
         return [
             MenuRelationManager::class,
+            MenuVariationRelationManager::class,
             OpeningHoursRelationManager::class,
             MenuCategoryRelationManager::class,
-            VariationCategoryRelationManager::class
+            VariationCategoryRelationManager::class,
         ];
     }
 

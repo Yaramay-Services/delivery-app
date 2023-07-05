@@ -31,12 +31,17 @@ class MenuLivewire extends Component
 
         $this->categories = MenuCategory::where('business_id', $this->business->id)
             ->whereHas('menu', fn ($q) => $q->where('is_published', '1'))->get()->toArray();
-            
-        $this->banner = $this->business->getMedia('banner')->first()->getUrl();
+
+        $this->banner = $this->business->getMedia('banner')->first()?->getUrl() ?? config('media-library.placeholder');
     }
 
     public function render()
     {
         return view('webapp::livewire.menu-livewire')->layout('webapp::layouts.default');
+    }
+
+    public function loadMenu($id)
+    {
+        $this->emit('getVariations', $id);
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Business;
 use App\Models\MenuCategory;
+use App\Models\MenuVariation;
 use App\Models\OpeningHour;
 use App\Models\VariationCategory;
 use Illuminate\Database\Seeder;
@@ -43,7 +44,29 @@ class DatabaseSeeder extends Seeder
                 OpeningHour::factory()->create(['business_id' => $item, 'day' => 'Sunday']);
             }
 
-            foreach (Menu::all() as $item) {
+            $parents = [];
+            foreach (Business::all() as $business) {
+                foreach ($business->menu as $menu) {
+                    foreach ($business->variationCategory as $key => $variationCategory) {
+                        if ($key) {
+                            $parents = MenuVariation::factory()->create([
+                                'business_id' => $business->id,
+                                'menu_id' => $menu->id,
+                                'variation_category_id' => $variationCategory->id,
+                                'parent_id' => null
+                            ]);
+                        } else {
+                            foreach ($parents as $parent) {
+                                MenuVariation::factory(4)->create([
+                                    'business_id' => $business->id,
+                                    'menu_id' => $menu->id,
+                                    'variation_category_id' => $variationCategory->id,
+                                    'parent_id' => $parent
+                                ]);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

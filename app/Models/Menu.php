@@ -20,6 +20,7 @@ class Menu extends Model implements HasMedia
         'selling_price',
         'display_order',
         'is_published',
+        'description',
         'hits',
     ];
 
@@ -36,5 +37,10 @@ class Menu extends Model implements HasMedia
     public function category()
     {
         return $this->belongsToMany(MenuCategory::class);
+    }
+
+    public function menuVariation()
+    {
+        return $this->hasMany(MenuVariation::class);
     }
 }

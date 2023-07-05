@@ -20,8 +20,9 @@ class MenuFactory extends Factory
             'menu_name' => $this->faker->word(),
             'price' => $this->faker->numberBetween(100, 200),
             'selling_price' => $this->faker->numberBetween(100, 200),
+            'description' => $this->faker->sentence(),
             'display_order' => 0,
-            'is_published' => 0,
+            'is_published' => 1,
             'hits' => 0,
         ];
     }

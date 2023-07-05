@@ -2,6 +2,7 @@
 
 return [
 
+    'placeholder' => env('IMG_PLACEHOLDER', 'https://images.pexels.com/photos/1415734/pexels-photo-1415734.jpeg?auto=compress&cs=tinysrgb&w=720'),
     /*
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.

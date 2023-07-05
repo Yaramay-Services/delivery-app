@@ -11,6 +11,7 @@ class MenuVariation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'business_id',
         'menu_id',
         'variation_category_id',
         'price',
@@ -19,8 +20,18 @@ class MenuVariation extends Model
         'parent_id',
     ];
 
+    public function variationCategory(): BelongsTo
+    {
+        return $this->belongsTo(VariationCategory::class);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(VariationCategory::class);
+    }
+
+    public function menu(): BelongsTo
+    {
+        return $this->belongsTo(Menu::class);
     }
 }
