@@ -42,16 +42,12 @@ class BusinessResource extends Resource
                     ->collection('banner')
                     ->imageResizeTargetHeight(323)
                     ->imageResizeTargetWidth(383)
-                    ->columnSpan(1)
-                    ->responsiveImages()
-                    ->image(),
+                    ->columnSpan(1),
                 SpatieMediaLibraryFileUpload::make('logo')
                     ->collection('logo')
                     ->imageResizeTargetHeight(64)
                     ->imageResizeTargetWidth(64)
                     ->columnSpan(1)
-                    ->responsiveImages()
-                    ->image()
             ]);
     }
 

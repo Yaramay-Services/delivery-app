@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('business_id')->constrained();
             $table->string('category_name');
+            $table->integer('display_order')->default(0);
+            $table->integer('is_published')->default(0);
             $table->timestamps();
         });
     }

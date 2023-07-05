@@ -27,12 +27,10 @@ class Business extends Model implements HasMedia
         return $this->hasMany(Menu::class);
     }
 
-
     public function menuCategory(): HasMany
     {
         return $this->hasMany(MenuCategory::class);
     }
-
 
     public function openingHour(): HasMany
     {

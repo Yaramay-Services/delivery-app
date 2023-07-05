@@ -10,7 +10,7 @@ class MenuCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category_name', 'business_id'];
+    protected $fillable = ['category_name', 'business_id', 'display_record', 'is_published'];
 
     public function menu()
     {

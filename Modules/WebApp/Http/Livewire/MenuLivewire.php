@@ -2,14 +2,18 @@
 
 namespace Modules\WebApp\Http\Livewire;
 
+use App\Models\Business;
 use App\Models\Menu;
+use App\Models\MenuCategory;
 use Livewire\Component;
 
 class MenuLivewire extends Component
 {
     public $queryId;
 
-    public $businessId;
+    public $business;
+
+    public $banner;
 
     public $menu;
 
@@ -19,13 +23,16 @@ class MenuLivewire extends Component
 
     public function mount()
     {
-        $this->businessId = decrypt($this->queryId);
-        $this->menu = Menu::with('menuCategory')->where('business_id', $this->businessId)->get();
-        $this->menu->map(function($value){
-            foreach($value->menuCategory as $item){
-                $this->categories[$item->category_name] = $item->id;
-            }
-        });
+        $this->business = Business::findOrFail(decrypt($this->queryId));
+
+        $this->menu = MenuCategory::with(['menu' => fn ($q) => $q->where('is_published', '1')])
+            ->whereHas('menu', fn ($q) => $q->where('is_published', '1'))
+            ->where('business_id', $this->business->id)->get();
+
+        $this->categories = MenuCategory::where('business_id', $this->business->id)
+            ->whereHas('menu', fn ($q) => $q->where('is_published', '1'))->get()->toArray();
+            
+        $this->banner = $this->business->getMedia('banner')->first()->getUrl();
     }
 
     public function render()

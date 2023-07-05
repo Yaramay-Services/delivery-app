@@ -15,7 +15,7 @@ use Modules\WebApp\Http\Livewire\RestaurantLivewire;
 |
 */
 Route::prefix('webapp')->group(function() {
-    Route::get('/', [WebAppController::class, 'index']);
+    Route::get('/', [WebAppController::class, 'index'])->name('webapp');
     Route::get('/restuarants', RestaurantLivewire::class)->name('restaurants');
     Route::get('/menu', MenuLivewire::class)->name('menu');
 });
