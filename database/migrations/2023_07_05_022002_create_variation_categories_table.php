@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('variation_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('business_id')->constrained();
-            $table->string('menu_name');
-            $table->text('description')->nullable();
-            $table->float('price');
-            $table->float('selling_price');
-            $table->integer('display_order')->default(0);
-            $table->integer('is_published')->default(0);
-            $table->integer('hits')->default(0);
+            $table->string('name');
+            $table->integer('is_required')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('variation_categories');
     }
 };

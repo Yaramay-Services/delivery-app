@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OpeningHour>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MenuVariation>
  */
-class OpeningHourFactory extends Factory
+class MenuVariationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class OpeningHourFactory extends Factory
     public function definition(): array
     {
         return [
-            'opening' => '09:00',
-            'closing' => '17:00'
+            //
         ];
     }
 }

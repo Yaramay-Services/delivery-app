@@ -5,7 +5,7 @@
                 <img class="d-inline-block"
                     src="/WebAppTheme/public/assets/img/gallery/logo.svg" alt="logo" />
                     <span class="text-1000 fs-3 fw-bold ms-2 text-gradient">
-                        Mappiya
+                        {{ config('app.name') }}
                     </span>
                 </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

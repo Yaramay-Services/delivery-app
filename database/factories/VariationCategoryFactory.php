@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OpeningHour>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\VariationCategory>
  */
-class OpeningHourFactory extends Factory
+class VariationCategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class OpeningHourFactory extends Factory
     public function definition(): array
     {
         return [
-            'opening' => '09:00',
-            'closing' => '17:00'
+            'name' => 'variation ' . $this->faker->randomLetter(),
+            'is_required' => $this->faker->randomElement([1, 0])
         ];
     }
 }
