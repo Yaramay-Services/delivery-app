@@ -30,4 +30,9 @@ class VariationCategory extends Model
     {
         return $this->belongsTo(Menu::class);
     }
+
+    public function variationCategory(): BelongsTo
+    {
+        return $this->belongsTo(VariationCategory::class, 'parent_id', 'id');
+    }
 }

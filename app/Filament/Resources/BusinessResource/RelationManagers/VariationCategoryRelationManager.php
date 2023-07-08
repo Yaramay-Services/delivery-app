@@ -32,7 +32,7 @@ class VariationCategoryRelationManager extends RelationManager
                 Forms\Components\Toggle::make('is_required')
                     ->required(),
                 Forms\Components\Select::make('parent_id')
-                    ->relationship('menu', 'id')
+                    ->relationship('variationCategory', 'id')
                     ->options(function (RelationManager $livewire) {
                         return VariationCategory::where('business_id', $livewire->ownerRecord->id)
                             ->pluck('name', 'id');
@@ -47,7 +47,7 @@ class VariationCategoryRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('menu.menu_name'),
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('parent_id'),
+                Tables\Columns\TextColumn::make('variationCategory.name'),
                 ToggleColumn::make('is_required'),
             ])
             ->filters([
