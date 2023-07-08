@@ -31,7 +31,6 @@ class DatabaseSeeder extends Seeder
             Business::factory(10)
                 ->has(Menu::factory(10))
                 ->has(MenuCategory::factory(5))
-                ->has(VariationCategory::factory(5))
                 ->create();
 
             foreach (Business::all() as $item) {
@@ -44,28 +43,19 @@ class DatabaseSeeder extends Seeder
                 OpeningHour::factory()->create(['business_id' => $item, 'day' => 'Sunday']);
             }
 
-            $parents = [];
+            $parent = null;
             foreach (Business::all() as $business) {
-                foreach ($business->menu as $menu) {
-                    foreach ($business->variationCategory as $key => $variationCategory) {
-                        if ($key) {
-                            $parents = MenuVariation::factory()->create([
-                                'business_id' => $business->id,
-                                'menu_id' => $menu->id,
-                                'variation_category_id' => $variationCategory->id,
-                                'parent_id' => null
-                            ]);
-                        } else {
-                            foreach ($parents as $parent) {
-                                MenuVariation::factory(4)->create([
-                                    'business_id' => $business->id,
-                                    'menu_id' => $menu->id,
-                                    'variation_category_id' => $variationCategory->id,
-                                    'parent_id' => $parent
-                                ]);
-                            }
-                        }
-                    }
+                foreach ($business->menu as $key => $menu) {
+                    $parent = VariationCategory::factory()->create([
+                        'business_id' => $business->id,
+                        'menu_id' => $menu->id,
+                        'parent_id' => null
+                    ]);
+                    VariationCategory::factory(5)->create([
+                        'business_id' => $business->id,
+                        'menu_id' => $menu->id,
+                        'parent_id' => $parent?->id
+                    ]);
                 }
             }
         }

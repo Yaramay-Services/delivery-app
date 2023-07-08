@@ -26,6 +26,7 @@
                                 <div class="p-2 w-100 d-flex flex-column">
                                     <label class="fw-bold">{{ $item->menu_name }}</label>
                                     <label class="fw-muted">{{ Str::limit($item->description, 20) }}</label>
+                                    <label class="fw-bold">SAR {{ $item->selling_price }}</label>
                                 </div>
                                 <img src="{{ $item->getMedia('banner')->first()?->getUrl() ?? config('media-library.placeholder') }}"
                                     alt="" width="90" height="90">

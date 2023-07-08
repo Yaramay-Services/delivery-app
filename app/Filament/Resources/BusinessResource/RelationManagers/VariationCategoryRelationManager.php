@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\BusinessResource\RelationManagers;
 
+use App\Models\VariationCategory;
 use Filament\Forms;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
@@ -25,6 +26,17 @@ class VariationCategoryRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('display_order')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\Toggle::make('is_required')
+                    ->required(),
+                Forms\Components\Select::make('parent_id')
+                    ->relationship('menu', 'id')
+                    ->options(function (RelationManager $livewire) {
+                        return VariationCategory::where('business_id', $livewire->ownerRecord->id)
+                            ->pluck('name', 'id');
+                    }),
             ]);
     }
 
@@ -32,7 +44,10 @@ class VariationCategoryRelationManager extends RelationManager
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('menu.menu_name'),
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('parent_id'),
                 ToggleColumn::make('is_required'),
             ])
             ->filters([

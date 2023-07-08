@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('variation_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('business_id')->constrained();
+            $table->foreignId('menu_id')->constrained();
+            $table->bigInteger('parent_id')->nullable();
             $table->string('name');
+            $table->string('display_order')->default(0);
             $table->integer('is_required')->default(0);
             $table->timestamps();
         });
