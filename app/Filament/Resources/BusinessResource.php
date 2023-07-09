@@ -67,7 +67,7 @@ class BusinessResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+                //php artisan make:filament-resource Customer
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
