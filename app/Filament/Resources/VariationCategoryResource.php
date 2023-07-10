@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VariationCategoryResource\Pages;
 use App\Filament\Resources\VariationCategoryResource\RelationManagers;
+use App\Filament\Resources\VariationCategoryResource\RelationManagers\MenuVariationRelationManager;
 
 class VariationCategoryResource extends Resource
 {
@@ -50,7 +51,7 @@ class VariationCategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MenuVariationRelationManager::class
         ];
     }
 
