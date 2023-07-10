@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('display_order')->default(0);
             $table->integer('is_required')->default(0);
+            $table->bigInteger('menu_variation_id')->nullable();
             $table->timestamps();
         });
     }

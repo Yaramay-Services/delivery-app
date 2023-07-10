@@ -18,7 +18,8 @@ class VariationCategory extends Model
         'parent_id',
         'name',
         'display_order',
-        'is_required'
+        'is_required',
+        'menu_variation_id'
     ];
 
     public function business(): BelongsTo

@@ -46,21 +46,21 @@ class DatabaseSeeder extends Seeder
             $parent = null;
             foreach (Business::all() as $business) {
                 foreach ($business->menu as $key => $menu) {
-                    $parent = VariationCategory::factory()
+                    $parentVariation = VariationCategory::factory()
                         ->has(MenuVariation::factory(5)->state(['business_id' => $business->id]))
                         ->create([
                             'business_id' => $business->id,
                             'menu_id' => $menu->id,
-                            'parent_id' => null
                         ]);
-
-                    VariationCategory::factory(5)
-                        ->has(MenuVariation::factory(5)->state(['business_id' => $business->id]))
-                        ->create([
-                            'business_id' => $business->id,
-                            'menu_id' => $menu->id,
-                            'parent_id' => $parent?->id
-                        ]);
+                    foreach ($parentVariation->menuVariation as $variation) {
+                        VariationCategory::factory(5)
+                            ->has(MenuVariation::factory(5)->state(['business_id' => $business->id]))
+                            ->create([
+                                'business_id' => $business->id,
+                                'menu_id' => $menu->id,
+                                'menu_variation_id' => $variation->id
+                            ]);
+                    }
                 }
             }
         }

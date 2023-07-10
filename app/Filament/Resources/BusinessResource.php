@@ -81,8 +81,8 @@ class BusinessResource extends Resource
     public static function getRelations(): array
     {
         return [
-            VariationCategoryRelationManager::class,
             MenuRelationManager::class,
+            VariationCategoryRelationManager::class,
             OpeningHoursRelationManager::class,
             MenuCategoryRelationManager::class,
         ];

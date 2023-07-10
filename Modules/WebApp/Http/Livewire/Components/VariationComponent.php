@@ -37,21 +37,17 @@ class VariationComponent extends Component
 
     public function getParentVariations()
     {
-        $this->parentVariations = VariationCategory::query()
-            ->join('menu_variations as mv', 'mv.variation_category_id', '=', 'variation_categories.id')
-            ->where('mv.menu_id', $this->menu->id)
-            ->whereNull('mv.parent_id')
+        $this->parentVariations = VariationCategory::with('menuVariation')
+            ->where('menu_id', $this->menu->id)
+            ->whereNull('menu_variation_id')
             ->get();
     }
 
-    public function getChildVariations()
+    public function getChildVariations($parentId)
     {
-        $parentId = $this->selectedParentVariation;
-
-        $this->childVariations = VariationCategory::query()
-            ->join('menu_variations as mv', 'mv.variation_category_id', '=', 'variation_categories.id')
-            ->where('mv.menu_id', $this->menu->id)
-            ->where('mv.parent_id', $parentId)
+        $this->childVariations = VariationCategory::with('menuVariation')
+            ->where('menu_id', $this->menu->id)
+            ->where('menu_variation_id', $parentId)
             ->get();
     }
 }

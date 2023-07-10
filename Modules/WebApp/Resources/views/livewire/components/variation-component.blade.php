@@ -24,7 +24,7 @@
                                 @foreach ($parent->menuVariation as $variation)
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="{{ $variation->id }}"
-                                            wire:click='getChildVariations'
+                                            wire:click='getChildVariations({{ $variation->id }})'
                                             wire:model='selectedParentVariation' name="{{ Str::slug($parent->name) }}">
                                         <label class="form-check-label w-100 d-flex justify-content-between"
                                             for="flexCheckDefault">
