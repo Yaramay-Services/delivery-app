@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VariationCategoryResource\Pages;
-use App\Filament\Resources\VariationCategoryResource\RelationManagers;
-use App\Models\VariationCategory;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use App\Models\VariationCategory;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\VariationCategoryResource\Pages;
+use App\Filament\Resources\VariationCategoryResource\RelationManagers;
 
 class VariationCategoryResource extends Resource
 {
@@ -23,7 +25,6 @@ class VariationCategoryResource extends Resource
     {
         return $form
             ->schema([
-                //
             ]);
     }
 
@@ -31,10 +32,12 @@ class VariationCategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('business.business_name')
             ])
             ->filters([
-                //
+                SelectFilter::make('business_name')
+                    ->relationship('business', 'business_name')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

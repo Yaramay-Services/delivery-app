@@ -21,6 +21,11 @@ class VariationCategory extends Model
         'is_required'
     ];
 
+    public function business(): BelongsTo
+    {
+        return $this->belongsTo(Business::class);
+    }
+
     public function menuVariation(): HasMany
     {
         return $this->hasMany(MenuVariation::class);
