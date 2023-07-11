@@ -35,15 +35,15 @@
                                 @endforeach
                             </div>
                         @endforeach
+                        @dump($selectedChildVariation)
                         @foreach ($childVariations ?? [] as $child)
                             <div class="d-flex flex-column mt-3">
                                 <h4>{{ $child->name }}</h4>
                                 @foreach ($child->menuVariation as $variation)
                                     <div class="form-check">
                                         <input class="form-check-input"
-                                            type="checkbox"
-                                            value="{{ $variation->id }}"
-                                            wire:model='selectedChildVariation'
+                                            @if ($child->is_required) type="radio" @else type="checkbox" @endif
+                                            value="{{ $variation->id }}" wire:model.lazy='selectedChildVariation'
                                             name="{{ Str::slug($child->name) }}">
                                         <label class="form-check-label w-100 d-flex justify-content-between"
                                             for="flexCheckDefault">

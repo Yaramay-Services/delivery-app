@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VariationCategoryResource\Pages;
 use App\Filament\Resources\VariationCategoryResource\RelationManagers;
 use App\Filament\Resources\VariationCategoryResource\RelationManagers\MenuVariationRelationManager;
+use Filament\Tables\Columns\ToggleColumn;
 
 class VariationCategoryResource extends Resource
 {
@@ -34,7 +35,8 @@ class VariationCategoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name'),
-                TextColumn::make('business.business_name')
+                TextColumn::make('business.business_name'),
+                ToggleColumn::make('is_required'),
             ])
             ->filters([
                 SelectFilter::make('business_name')

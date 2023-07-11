@@ -21,7 +21,7 @@ class VariationComponent extends Component
 
     public $childVariations;
 
-    public $selectedChildVariation;
+    public $selectedChildVariation = [];
 
     public function render()
     {
