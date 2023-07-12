@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Modules\WebApp\Http\Controllers\WebAppController;
+use Modules\WebApp\Http\Livewire\CheckoutLivewire;
 use Modules\WebApp\Http\Livewire\MenuLivewire;
 use Modules\WebApp\Http\Livewire\RestaurantLivewire;
 
@@ -18,4 +19,5 @@ Route::prefix('webapp')->group(function() {
     Route::get('/', [WebAppController::class, 'index'])->name('webapp');
     Route::get('/restuarants', RestaurantLivewire::class)->name('restaurants');
     Route::get('/menu', MenuLivewire::class)->name('menu');
+    Route::get('/checkout', CheckoutLivewire::class)->name('checkout');
 });

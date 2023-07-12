@@ -40,6 +40,13 @@ class OrderComponent extends Component
     public function checkout()
     {
         $this->recalculate();
+        $overview = [
+            'cart' => $this->cart,
+            'delivery_fee' => $this->deliveryFee,
+            'total' => $this->total
+        ];
+
+        return redirect()->to(route('checkout', ['overview' => encrypt(json_encode($overview))]));
     }
 
     public function recalculate()
