@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class OrderComponent extends Component
 {
-    public $cart;
+    public $cart = [];
 
     protected $listeners = ['addToCart'];
 
@@ -17,6 +17,6 @@ class OrderComponent extends Component
 
     public function addToCart($value)
     {
-        $cart = $value;
+        $this->cart = $value;
     }
 }

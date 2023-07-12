@@ -1,6 +1,12 @@
 <div>
-    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#orderModal">
+    <button type="button" class="btn btn-info position-relative" data-bs-toggle="modal" data-bs-target="#orderModal">
         <i class="fa-solid fa-cart-shopping"></i> My Cart
+        @if (count($cart))
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ count($cart) }}
+                <span class="visually-hidden">unread messages</span>
+            </span>
+        @endif
     </button>
 
     <!-- Modal -->

@@ -36,12 +36,14 @@ class VariationComponent extends Component
         $this->menu = $menu;
         $this->menuBanner = $menu->getMedia('banner')->first()?->getUrl();
         $this->getParentVariations();
+        $this->childVariations = [];
     }
 
     public function updatedselectedParentVariation()
     {
         $this->radioGroup = [];
         $this->checkboxGroup = [];
+        $this->childVariations = [];
     }
 
     public function getParentVariations()
@@ -68,6 +70,8 @@ class VariationComponent extends Component
         $orderList = MenuVariation::find($mergedChildren);
 
         $orderList->push($parent);
+
+        $this->emit('addToCart', [$this->menu->id => $orderList]);
 
         $this->radioGroup = [];
         $this->checkboxGroup = [];
