@@ -5,6 +5,7 @@ namespace Modules\WebApp\Http\Livewire\Components;
 use App\Models\Menu;
 use Livewire\Component;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use App\Models\MenuVariation;
 use App\Models\VariationCategory;
 
@@ -21,6 +22,8 @@ class VariationComponent extends Component
     public $selectedParentVariation;
 
     public $childVariations;
+
+    public $quantity = 1;
 
     public $radioGroup = [];
 
@@ -45,6 +48,7 @@ class VariationComponent extends Component
         $this->radioGroup = [];
         $this->checkboxGroup = [];
         $this->childVariations = [];
+        $this->quantity = 1;
     }
 
     public function getParentVariations()
@@ -77,11 +81,30 @@ class VariationComponent extends Component
 
         $this->emit(
             'addToCart',
-            [$this->menu->menu_name . '-' . $this->menu->id => ['menu_id' => $this->menu->id, $orderList]]
+            [
+                $this->menu->menu_name . '-' . Str::uuid() => [
+                    'menu' => $this->menu,
+                    'items' => $orderList,
+                    'quantity' => $this->quantity
+                ]
+            ]
         );
 
         $this->radioGroup = [];
         $this->checkboxGroup = [];
+        $this->quantity = 1;
         $this->selectedParentVariation = null;
+    }
+
+    public function increment()
+    {
+        $this->quantity += 1;
+    }
+
+    public function decrement()
+    {
+        if ($this->quantity != 1) {
+            $this->quantity -= 1;
+        }
     }
 }

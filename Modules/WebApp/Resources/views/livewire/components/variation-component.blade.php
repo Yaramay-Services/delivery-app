@@ -43,8 +43,7 @@
                                 @foreach ($child->menuVariation as $key => $variation)
                                     <div class="form-check">
                                         <input class="form-check-input"
-                                            @if ($child->is_required)
-                                                type="radio" wire:model.lazy='radioGroup.{{ Str::slug($child->name) }}'
+                                            @if ($child->is_required) type="radio" wire:model.lazy='radioGroup.{{ Str::slug($child->name) }}'
 
                                                 @php
                                                     if(!$key && !isset($this->radioGroup[Str::slug($child->name)])) {
@@ -53,9 +52,7 @@
                                                 @endphp
 
                                             @else
-                                                type="checkbox" wire:model.lazy='checkboxGroup'
-                                            @endif
-
+                                                type="checkbox" wire:model.lazy='checkboxGroup' @endif
                                             value="{{ $variation->id }}" name="{{ Str::slug($child->name) }}">
                                         <label class="form-check-label w-100 d-flex justify-content-between"
                                             for="flexCheckDefault">
@@ -68,10 +65,23 @@
                         @endforeach
                     @endif
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click='addToCart'>Add To
-                        Cart</button>
+                <div class="modal-footer d-flex justify-content-between">
+                    <div class="d-flex">
+                        <div>
+                            <button class="btn btn-sm btn-primary" wire:click='increment'><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <label class="px-2 pt-2 h5"><strong>{{ $quantity }}</strong></label>
+                        <div>
+                            <button class="btn btn-sm btn-primary" wire:click='decrement'><i
+                                    class="fa-solid fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click='addToCart'>
+                            Add To Cart</button>
+                    </div>
                 </div>
             </div>
         </div>

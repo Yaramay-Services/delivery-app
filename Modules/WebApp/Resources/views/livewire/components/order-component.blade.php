@@ -10,19 +10,49 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div wire:ignore.self class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @dump($cart)
+                    <div class="row">
+                        @foreach ($cart as $key => $values)
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between pe-4">
+                                    <label class="fw-bold h6">{{ $values['menu']['menu_name'] }}
+                                        x{{ $values['quantity'] }}</label>
+                                    <label class="fw-bold h6">SAR {{ $values['menu']['selling_price'] }}</label>
+                                </div>
+                                @foreach ($values['items'] as $items)
+                                    <div class="d-flex justify-content-between pe-4 ps-1">
+                                        <label class="h6">{{ $items['menu_variation_name'] }}</label>
+                                        <label class="h6">SAR {{ $items['selling_price'] }}</label>
+                                    </div>
+                                @endforeach
+                                <button type="button" wire:click='removeOrder("{{ $key }}")'
+                                    class="btn btn-sm btn-warning w-100 mb-2">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <hr>
+                        @endforeach
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between pe-4">
+                                <label class="fw-bold h6">Total</label>
+                                <label class="fw-bold h6">SAR {{ $total }}</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    @if ($total)
+                        <button type="button" class="btn btn-primary" wire:click='checkout'>Checkout</button>
+                    @endif
                 </div>
             </div>
         </div>
