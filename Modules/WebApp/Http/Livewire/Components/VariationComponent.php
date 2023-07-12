@@ -3,9 +3,10 @@
 namespace Modules\WebApp\Http\Livewire\Components;
 
 use App\Models\Menu;
+use Livewire\Component;
+use Illuminate\Support\Arr;
 use App\Models\MenuVariation;
 use App\Models\VariationCategory;
-use Livewire\Component;
 
 class VariationComponent extends Component
 {
@@ -21,7 +22,9 @@ class VariationComponent extends Component
 
     public $childVariations;
 
-    public $selectedChildVariation = [];
+    public $radioGroup = [];
+
+    public $checkboxGroup = [];
 
     public function render()
     {
@@ -33,6 +36,12 @@ class VariationComponent extends Component
         $this->menu = $menu;
         $this->menuBanner = $menu->getMedia('banner')->first()?->getUrl();
         $this->getParentVariations();
+    }
+
+    public function updatedselectedParentVariation()
+    {
+        $this->radioGroup = [];
+        $this->checkboxGroup = [];
     }
 
     public function getParentVariations()
@@ -49,5 +58,19 @@ class VariationComponent extends Component
             ->where('menu_id', $this->menu->id)
             ->where('menu_variation_id', $parentId)
             ->get();
+    }
+
+    public function addToCart()
+    {
+        $mergedChildren = collect($this->radioGroup)->values()->toArray() + $this->checkboxGroup;
+
+        $parent = MenuVariation::find($this->selectedParentVariation);
+        $orderList = MenuVariation::find($mergedChildren);
+
+        $orderList->push($parent);
+
+        $this->radioGroup = [];
+        $this->checkboxGroup = [];
+        $this->selectedParentVariation = null;
     }
 }

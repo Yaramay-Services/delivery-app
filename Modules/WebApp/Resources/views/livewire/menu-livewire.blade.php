@@ -4,14 +4,17 @@
 
     <section class="py-3">
         <div class="container">
-            <div class="d-flex justify-content-sm-center overflow-scroll">
-                @foreach ($categories as $category)
-                    <div>
-                        <a href="#{{ $category['category_name'] }}" class="btn btn-primary ms-1">
-                            {{ $category['category_name'] }}
-                        </a>
-                    </div>
-                @endforeach
+            <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-sm-center overflow-scroll">
+                    @foreach ($categories as $category)
+                        <div>
+                            <a href="#{{ $category['category_name'] }}" class="btn btn-primary ms-1">
+                                {{ $category['category_name'] }}
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <livewire:webapp::components.order-component />
             </div>
             <div class="d-flex justify-content-center flex-column">
                 @foreach ($menu as $category)

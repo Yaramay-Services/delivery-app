@@ -35,15 +35,23 @@
                                 @endforeach
                             </div>
                         @endforeach
-                        @dump($selectedChildVariation)
+                        {{-- @dump($selectedParentVariation)
+                        @dump($radioGroup)
+                        @dump($checkboxGroup) --}}
                         @foreach ($childVariations ?? [] as $child)
                             <div class="d-flex flex-column mt-3">
                                 <h4>{{ $child->name }}</h4>
                                 @foreach ($child->menuVariation as $variation)
                                     <div class="form-check">
                                         <input class="form-check-input"
-                                            @if ($child->is_required) type="radio" @else type="checkbox" @endif
-                                            value="{{ $variation->id }}" wire:model.lazy='selectedChildVariation'
+                                            @if ($child->is_required)
+                                                type="radio"
+                                                wire:model.lazy='radioGroup.{{ Str::slug($child->name) }}'
+                                            @else
+                                                type="checkbox"
+                                                wire:model.lazy='checkboxGroup'
+                                            @endif
+                                            value="{{ $variation->id }}"
                                             name="{{ Str::slug($child->name) }}">
                                         <label class="form-check-label w-100 d-flex justify-content-between"
                                             for="flexCheckDefault">
@@ -58,7 +66,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add To Cart</button>
+                    <button type="button" class="btn btn-primary" wire:click='addToCart'>Add To Cart</button>
                 </div>
             </div>
         </div>

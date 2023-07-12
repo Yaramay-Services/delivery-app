@@ -28,6 +28,7 @@
     <!--    Stylesheets-->
     <!-- ===============================================-->
     <link href="{{ asset('WebAppTheme/public/assets/css/theme.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/fontawesome-free6/css/all.min.css') }}" rel="stylesheet" />
 
     {{-- Laravel Vite - CSS File --}}
     {{-- {{ module_vite('build-webapp', 'Resources/assets/sass/app.scss') }} --}}
