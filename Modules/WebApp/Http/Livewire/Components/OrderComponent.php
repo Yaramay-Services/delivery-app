@@ -15,8 +15,10 @@ class OrderComponent extends Component
         return view('webapp::livewire.components.order-component');
     }
 
-    public function addToCart($value)
+    public function addToCart($menu)
     {
-        $this->cart = $value;
+        foreach ($menu as $key => $item) {
+            $this->cart[$key] = $item;
+        }
     }
 }

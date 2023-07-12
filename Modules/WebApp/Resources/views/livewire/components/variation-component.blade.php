@@ -21,7 +21,7 @@
                         @foreach ($parentVariations as $parent)
                             <div class="d-flex flex-column mt-3">
                                 <h4>{{ $parent->name }}</h4>
-                                @foreach ($parent->menuVariation as $variation)
+                                @foreach ($parent->menuVariation as $key => $variation)
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="{{ $variation->id }}"
                                             wire:click='getChildVariations({{ $variation->id }})'
@@ -35,24 +35,28 @@
                                 @endforeach
                             </div>
                         @endforeach
-                        {{-- @dump($selectedParentVariation)
-                        @dump($radioGroup)
-                        @dump($checkboxGroup) --}}
+                        {{-- @dump($childVariations) --}}
+                        {{-- @dump($checkboxGroup) --}}
                         @foreach ($childVariations ?? [] as $child)
                             <div class="d-flex flex-column mt-3">
                                 <h4>{{ $child->name }}</h4>
-                                @foreach ($child->menuVariation as $variation)
+                                @foreach ($child->menuVariation as $key => $variation)
                                     <div class="form-check">
                                         <input class="form-check-input"
                                             @if ($child->is_required)
-                                                type="radio"
-                                                wire:model.lazy='radioGroup.{{ Str::slug($child->name) }}'
+                                                type="radio" wire:model.lazy='radioGroup.{{ Str::slug($child->name) }}'
+
+                                                @php
+                                                    if(!$key && !isset($this->radioGroup[Str::slug($child->name)])) {
+                                                        $this->radioGroup[Str::slug($child->name)] = $variation->id;
+                                                    }
+                                                @endphp
+
                                             @else
-                                                type="checkbox"
-                                                wire:model.lazy='checkboxGroup'
+                                                type="checkbox" wire:model.lazy='checkboxGroup'
                                             @endif
-                                            value="{{ $variation->id }}"
-                                            name="{{ Str::slug($child->name) }}">
+
+                                            value="{{ $variation->id }}" name="{{ Str::slug($child->name) }}">
                                         <label class="form-check-label w-100 d-flex justify-content-between"
                                             for="flexCheckDefault">
                                             <label>{{ $variation->menu_variation_name }}</label>
@@ -66,7 +70,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click='addToCart'>Add To Cart</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click='addToCart'>Add To
+                        Cart</button>
                 </div>
             </div>
         </div>
