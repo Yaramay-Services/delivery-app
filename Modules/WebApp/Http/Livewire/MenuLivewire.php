@@ -11,6 +11,10 @@ class MenuLivewire extends Component
 {
     public $queryId;
 
+    public $distanceEncrypt;
+
+    public $distance;
+
     public $business;
 
     public $banner;
@@ -19,10 +23,12 @@ class MenuLivewire extends Component
 
     public $categories;
 
-    protected $queryString = ['queryId'];
+    protected $queryString = ['queryId', 'distanceEncrypt'];
 
     public function mount()
     {
+        $this->distance = decrypt($this->distanceEncrypt);
+
         $this->business = Business::findOrFail(decrypt($this->queryId));
 
         $this->menu = MenuCategory::with(['menu' => fn ($q) => $q->where('is_published', '1')])
@@ -37,11 +43,18 @@ class MenuLivewire extends Component
 
     public function render()
     {
+        $this->setDistance($this->distance);
+
         return view('webapp::livewire.menu-livewire')->layout('webapp::layouts.default');
     }
 
     public function loadMenu($id)
     {
         $this->emit('getVariations', $id);
+    }
+
+    public function setDistance($distance)
+    {
+        $this->emit('setDistance', $distance);
     }
 }

@@ -9,7 +9,7 @@
             <div class="row gx-2">
                 @foreach ($restaurants as $restaurant)
                     <a href="#" class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 card-restaurant rounded-2"
-                        wire:click='redirectTo("{{ encrypt($restaurant->id) }}")'>
+                        wire:click='redirectTo("{{ encrypt($restaurant->id) }}", "{{ encrypt($restaurant->distance) }}")'>
                         <div class="card card-span h-100 text-white rounded-3">
 
                             @foreach ($restaurant->getMedia('banner') as $item)
@@ -21,7 +21,7 @@
                                     src="{{ config('media-library.placeholder') }}"
                                     alt="..." />
                             @endif
-                            
+
                             {{-- Tag --}}
                             {{-- <div class="card-img-overlay ps-0">
                             <span class="badge bg-danger p-2 ms-3">

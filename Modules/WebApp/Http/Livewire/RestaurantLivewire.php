@@ -3,6 +3,7 @@
 namespace Modules\WebApp\Http\Livewire;
 
 use App\Models\Business;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class RestaurantLivewire extends Component
@@ -16,6 +17,19 @@ class RestaurantLivewire extends Component
     public function mount()
     {
         $this->restaurants = Business::query()
+            ->select([
+                "id",
+                "business_name",
+                "address",
+                "city",
+                "postal",
+                "longitude",
+                "latitude",
+                "banner",
+                "logo",
+                "created_at",
+                DB::raw("(SQRT( POW(69.1 * (`latitude` - $this->lng), 2) + POW(69.1 * ($this->lat - `longitude`) * COS(`latitude` / 57.3), 2))) distance")
+            ])
             ->whereHas(
                 'openingHour',
                 function ($query) {
@@ -33,8 +47,8 @@ class RestaurantLivewire extends Component
         return view('webapp::livewire.restaurant-livewire')->layout('webapp::layouts.default');
     }
 
-    public function redirectTo($encryptedId)
+    public function redirectTo($encryptedId, $distance)
     {
-        return redirect()->route('menu', ['queryId' => $encryptedId]);
+        return redirect()->route('menu', ['queryId' => $encryptedId, 'distanceEncrypt' => $distance]);
     }
 }

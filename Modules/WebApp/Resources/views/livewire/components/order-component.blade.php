@@ -42,6 +42,12 @@
                         @endforeach
                         <div class="col-12">
                             <div class="d-flex justify-content-between pe-4">
+                                <label class="fw-bold h6">Delivery Fee</label>
+                                <label class="fw-bold h6">SAR {{ $deliveryFee }}</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between pe-4">
                                 <label class="fw-bold h6">Total</label>
                                 <label class="fw-bold h6">SAR {{ $total }}</label>
                             </div>

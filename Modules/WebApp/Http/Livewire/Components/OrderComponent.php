@@ -10,11 +10,23 @@ class OrderComponent extends Component
 
     public $total = 0;
 
-    protected $listeners = ['addToCart'];
+    public $distance = 0;
+
+    public $deliveryFee = 0;
+
+    protected $listeners = ['addToCart', 'setDistance'];
 
     public function render()
     {
         return view('webapp::livewire.components.order-component');
+    }
+
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+        $this->deliveryFee = round($distance * 12, 2);
+
+        $this->recalculate();
     }
 
     public function addToCart($menu)
@@ -40,11 +52,11 @@ class OrderComponent extends Component
             foreach ($value['items'] as $item) {
                 $subTotal += $item['selling_price'];
             }
-            
+
             $subTotal *= $value['quantity'];
         }
 
-        $this->total += $subTotal;
+        $this->total += $subTotal + $this->deliveryFee;
     }
 
     public function removeOrder($key)
