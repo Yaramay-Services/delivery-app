@@ -24,8 +24,9 @@
                                 <div class="form-group mb-2 px-1 w-100">
                                     <label>Payment Method</label>
                                     <select class="form-select" wire:model.debounce.500ms="paymentMethod">
-                                        <option value="credit_debit" selected>Credit & Debit</option>
-                                        <option value="stc_pay">STC Pay</option>
+                                        @foreach (App\Enums\PaymentMethodEnum::cases() as $key => $case)
+                                            <option value="{{ $case->value }}" @if (!$key) selected @endif >{{ $case->value }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group mb-2 px-1">
