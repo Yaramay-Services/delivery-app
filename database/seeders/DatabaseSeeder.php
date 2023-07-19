@@ -43,8 +43,7 @@ class DatabaseSeeder extends Seeder
                 OpeningHour::factory()->create(['business_id' => $item, 'day' => 'Sunday']);
             }
 
-            $parent = null;
-            foreach (Business::all() as $business) {
+            foreach (Business::all() as $cnt => $business) {
                 foreach ($business->menu as $key => $menu) {
                     $parentVariation = VariationCategory::factory()
                         ->has(MenuVariation::factory(5)->state(['business_id' => $business->id]))

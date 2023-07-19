@@ -5,6 +5,7 @@ namespace Modules\WebApp\Http\Livewire;
 use App\Enums\OrderStatusEnum;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\OrderItems;
 use Livewire\Component;
 
 class CheckoutLivewire extends Component
@@ -48,7 +49,6 @@ class CheckoutLivewire extends Component
     public function confirmPay()
     {
         $validated = $this->validate();
-        $order = null;
 
         $order = Order::create([
             'first_name' => $validated['firstName'],
@@ -62,7 +62,7 @@ class CheckoutLivewire extends Component
         ]);
 
         foreach ($this->order['cart'] as $key => $cart) {
-            OrderDetails::create([
+            $orderDetail = OrderDetails::create([
                 'order_id' => $order->id,
                 'business_id' => $cart['menu']['business_id'],
                 'menu_id' => $cart['menu']['id'],
@@ -71,6 +71,19 @@ class CheckoutLivewire extends Component
                 'price' => $cart['menu']['price'],
                 'selling_price' => $cart['menu']['selling_price']
             ]);
+            foreach ($cart['items'] as $item) {
+                OrderItems::create([
+                    "order_detail_id" => $orderDetail->id,
+                    "menu_variation_id" => $item['id'],
+                    "business_id" => $item['business_id'],
+                    "variation_category_id" => $item['variation_category_id'],
+                    "price" => $item['price'],
+                    "selling_price" => $item['selling_price'],
+                    "menu_variation_name" => $item['menu_variation_name']
+                ]);
+            }
         }
+
+        return $this->redirect(route('stc.checkout', ['f' => encrypt($order->id)]));
     }
 }

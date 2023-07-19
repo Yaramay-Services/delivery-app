@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OrderItems extends Model
+class OrderPayment extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
-        "order_detail_id",
-        "menu_variation_id",
-        "business_id",
-        "variation_category_id",
-        "price",
-        "selling_price",
-        "menu_variation_name"
+        'order_id',
+        'payment_method',
+        'ref_no',
+        'is_confirmed'
     ];
 }
