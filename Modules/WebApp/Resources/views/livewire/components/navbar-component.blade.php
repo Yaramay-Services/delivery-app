@@ -2,8 +2,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container">
             <a class="navbar-brand d-inline-flex" href="{{ route('webapp') }}">
-                <img class="d-inline-block"
-                    src="/WebAppTheme/public/assets/img/gallery/logo.svg" alt="logo" />
+                <img class="d-inline-block" height="40" width="40"
+                    src="/WebAppTheme/public/assets/img/gallery/mappiya-logo.png" alt="logo" />
                     <span class="text-1000 fs-3 fw-bold ms-2 text-gradient">
                         {{ config('app.name') }}
                     </span>

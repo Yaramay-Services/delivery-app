@@ -67,7 +67,7 @@
             <div class="col-lg-7">
                 <h5 class="fw-bold fs-3 fs-lg-5 lh-sm text-center text-lg-start">Search by Food</h5>
             </div>
-            <div class="col-lg-4 text-lg-end text-center"><a class="btn btn-lg text-800 me-2" href="#"
+            <div class="col-lg-4 text-lg-end text-center"><a class="btn btn-lg text-800 me-4" href="#"
                     role="button">VIEW ALL <i class="fas fa-chevron-right ms-2"></i></a></div>
             <div class="col-lg-auto position-relative">
                 <button class="carousel-control-prev s-icon-prev carousel-icon" type="button"
@@ -103,8 +103,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/burger.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -113,10 +112,9 @@
                                             class="img-fluid rounded-circle h-100"
                                             src="/WebAppTheme/public/assets/img/gallery/noodles.png"
                                             alt="..." />
-                                        <div cl
-                                        <h3>The <code>RestaurantLivewire</code> livewire component is loaded from the <code>WebApp</code> module.</h3>ass="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles
-                                            </h5>
+                                        <!-- <h3>The <code>RestaurantLivewire</code> livewire component is loaded from the <code>WebApp</code> module.</h3>  -->
+                                        <div class="card-body ps-0">
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -126,8 +124,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/sub-sandwich.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">
-                                                Sub-sandwiches</h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Sub-sandwiches</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -137,8 +134,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/chowmein.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +161,10 @@
                                             <h5 class="text-center fw-bold text-1000 text-truncate mb-2">pizza</h5>
                                         </div>
                                     </div>
-                                    <h3>The <code>RestaurantLivewire</code> livewire component is loaded from the <code>WebApp</code> module.</h3>"card card-span h-100 rounded-circle"><img
+                                </div>
+                                <!-- <h3>The <code>RestaurantLivewire</code> livewire component is loaded from the <code>WebApp</code> module.</h3> -->
+                                <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
+                                    <div class="card card-span h-100 rounded-circle"><img
                                             class="img-fluid rounded-circle h-100"
                                             src="/WebAppTheme/public/assets/img/gallery/burger.png"
                                             alt="..." />
@@ -181,8 +180,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/noodles.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -192,8 +190,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/sub-sandwich.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">
-                                                Sub-sandwiches</h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Sub-sandwiches</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -203,8 +200,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/chowmein.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -238,8 +234,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/burger.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -249,8 +244,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/noodles.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -260,8 +254,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/sub-sandwich.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">
-                                                Sub-sandwiches</h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Sub-sandwiches</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -271,8 +264,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/chowmein.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -306,8 +298,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/burger.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -317,8 +308,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/noodles.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles
-                                            </h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -328,8 +318,7 @@
                                             src="/WebAppTheme/public/assets/img/gallery/sub-sandwich.png"
                                             alt="..." />
                                         <div class="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">
-                                                Sub-sandwiches</h5>
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Sub-sandwiches</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -338,10 +327,9 @@
                                             class="img-fluid rounded-circle h-100"
                                             src="/WebAppTheme/public/assets/img/gallery/chowmein.png"
                                             alt="..." />
-                                        <div class
-                                        <h3>The <code>RestaurantLivewire</code> livewire component is loaded from the <code>WebApp</code> module.</h3>="card-body ps-0">
-                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein
-                                            </h5>
+                                        <!-- <h3>The <code>RestaurantLivewire</code> livewire component is loaded from the <code>WebApp</code> module.</h3> -->
+                                        <div class="card-body ps-0">
+                                            <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein</h5>
                                         </div>
                                     </div>
                                 </div>
