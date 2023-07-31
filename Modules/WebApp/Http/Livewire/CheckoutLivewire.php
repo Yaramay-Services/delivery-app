@@ -73,7 +73,7 @@ class CheckoutLivewire extends Component
             ]);
             foreach ($cart['items'] as $item) {
                 OrderItems::create([
-                    "order_detail_id" => $orderDetail->id,
+                    "order_details_id" => $orderDetail->id,
                     "menu_variation_id" => $item['id'],
                     "business_id" => $item['business_id'],
                     "variation_category_id" => $item['variation_category_id'],

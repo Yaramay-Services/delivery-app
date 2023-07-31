@@ -35,7 +35,7 @@ class OrderPaymentResource extends Resource
         return $form
             ->schema([
                 Toggle::make('is_confirmed')
-                    ->disabled(fn ($record) => $record->is_confirmed)
+                   // ->disabled(fn ($record) => $record->is_confirmed)
             ]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderDetails extends Model
@@ -20,4 +21,9 @@ class OrderDetails extends Model
         'price',
         'selling_price'
     ];
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItems::class);
+    }
 }

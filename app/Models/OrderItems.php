@@ -12,7 +12,7 @@ class OrderItems extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        "order_detail_id",
+        "order_details_id",
         "menu_variation_id",
         "business_id",
         "variation_category_id",

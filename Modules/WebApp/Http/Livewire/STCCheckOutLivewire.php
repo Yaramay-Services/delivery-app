@@ -43,5 +43,7 @@ class STCCheckOutLivewire extends Component
             'ref_no' => $this->refNo,
             'is_confirmed' => false
         ]);
+
+        $this->order = Order::with('orderPayment')->find(decrypt($this->f));
     }
 }

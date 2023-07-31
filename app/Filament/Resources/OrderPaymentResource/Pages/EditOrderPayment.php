@@ -3,8 +3,10 @@
 namespace App\Filament\Resources\OrderPaymentResource\Pages;
 
 use App\Filament\Resources\OrderPaymentResource;
+use App\Models\Order;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use ShipdayApi;
 
 class EditOrderPayment extends EditRecord
 {
@@ -15,5 +17,13 @@ class EditOrderPayment extends EditRecord
         return [
          //   Actions\DeleteAction::make(),
         ];
+    }
+
+    public function afterSave()
+    {
+        $order = Order::find($this->record->order_id)->load('orderDetails.orderItems');
+
+        dd($order->toArray());
+        app(ShipdayApi::class)->insertOrder($order->toArray());
     }
 }
