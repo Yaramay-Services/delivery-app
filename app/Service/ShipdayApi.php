@@ -28,11 +28,11 @@ class ShipdayApi
         $reponse = $this->client->post(
             $this->baseURL . 'orders',
             [
-                'orderNumber' => '99qT5A',
-                'customerName' => 'Mr. Jhon Mason',
-                'customerAddress' => '556 Crestlake Dr, San Francisco, CA 94132, USA',
-                'customerEmail' => 'jhonMason@gmail.com',
-                'customerPhoneNumber' => '+14152392212',
+                'orderNumber' => $order['id'],
+                'customerName' => $order['firt_name'] . ' ' . $order['last_name'],
+                'customerAddress' => $order['address'],
+                'customerEmail' => $order['email'],
+                'customerPhoneNumber' => $order['phone_no'],
                 'restaurantName' => 'Popeyes Louisiana Kitchen',
                 'restaurantAddress' => '890 Geneva Ave, San Francisco, CA 94112, United States',
                 'restaurantPhoneNumber' => '+14152392013',

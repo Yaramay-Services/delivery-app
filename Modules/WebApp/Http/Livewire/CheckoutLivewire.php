@@ -5,6 +5,7 @@ namespace Modules\WebApp\Http\Livewire;
 use App\Enums\OrderStatusEnum;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\OrderDraft;
 use App\Models\OrderItems;
 use Livewire\Component;
 
@@ -17,6 +18,8 @@ class CheckoutLivewire extends Component
     public $firstName;
 
     public $lastName;
+
+    public $email;
 
     public $city;
 
@@ -34,11 +37,12 @@ class CheckoutLivewire extends Component
         'city' => 'required|max:255',
         'address' => 'required|max:500',
         'phoneNo' => 'required|max:50',
+        'email' => 'required|email',
     ];
 
     public function mount()
     {
-        $this->order = collect(json_decode(decrypt($this->overview)))->toArray();
+        $this->order = collect(json_decode(OrderDraft::find($this->overview)->overview))->toArray();
     }
 
     public function render()
@@ -56,6 +60,7 @@ class CheckoutLivewire extends Component
             'city' => $validated['city'],
             'address' => $validated['address'],
             'phone_no' => $validated['phoneNo'],
+            'email' => $validated['email'],
             'total' => $this->order['total'],
             'delivery_fee' => $this->order['delivery_fee'],
             'order_status' => OrderStatusEnum::PENDING

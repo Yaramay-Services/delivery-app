@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('city');
             $table->text('address');
             $table->string('phone_no');
+            $table->string('email');
             $table->float('total');
             $table->float('delivery_fee');
             $table->string('order_status');

@@ -19,6 +19,7 @@ class Order extends Model
         'city',
         'address',
         'phone_no',
+        'email',
         'total',
         'delivery_fee',
         'order_status'

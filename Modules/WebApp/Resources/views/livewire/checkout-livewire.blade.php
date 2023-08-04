@@ -37,14 +37,21 @@
                             </div>
                             <div>
                                 <div class="form-group mb-2 px-1">
-                                    <label>Address</label>
-                                    <textarea type="text" class="form-control" wire:model.debounce.500ms="address"></textarea>
-                                    @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+                                    <label>E-mail</label>
+                                    <input type="text" class="form-control" wire:model.debounce.500ms="email">
+                                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group mb-2 px-1">
                                     <label>Mobile Phone</label>
                                     <input type="text" class="form-control" wire:model.debounce.500ms="phoneNo">
                                     @error('phoneNo') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group mb-2 px-1">
+                                    <label>Address</label>
+                                    <textarea type="text" class="form-control" wire:model.debounce.500ms="address"></textarea>
+                                    @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                         </div>

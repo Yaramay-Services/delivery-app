@@ -2,6 +2,7 @@
 
 namespace Modules\WebApp\Http\Livewire\Components;
 
+use App\Models\OrderDraft;
 use Livewire\Component;
 
 class OrderComponent extends Component
@@ -46,7 +47,9 @@ class OrderComponent extends Component
             'total' => $this->total
         ];
 
-        return redirect()->to(route('checkout', ['overview' => encrypt(json_encode($overview))]));
+        $orderDraft = OrderDraft::create(['overview' => json_encode($overview)]);
+
+        return redirect()->to(route('checkout', ['overview' => $orderDraft->id]));
     }
 
     public function recalculate()
