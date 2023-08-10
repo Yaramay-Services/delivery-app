@@ -35,7 +35,7 @@ class OrderPaymentResource extends Resource
         return $form
             ->schema([
                 Toggle::make('is_confirmed')
-                   // ->disabled(fn ($record) => $record->is_confirmed)
+                    ->disabled(fn ($record) => $record->is_confirmed)
             ]);
     }
 
@@ -54,7 +54,7 @@ class OrderPaymentResource extends Resource
 
             ])
             ->filters([
-                TernaryFilter::make('is_confirmed')->default(),
+                TernaryFilter::make('is_confirmed')->default(false),
                 Filter::make('created_at')
                     ->form([
                         Forms\Components\TextInput::make('ref_no'),

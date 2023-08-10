@@ -17,6 +17,7 @@ class Business extends Model implements HasMedia
         'business_name',
         'address',
         'city',
+        'phone_no',
         'postal',
         'longitude',
         'latitude'

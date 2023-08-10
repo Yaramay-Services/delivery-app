@@ -22,7 +22,8 @@ class BusinessFactory extends Factory
             'city' => $this->faker->city(),
             'postal' => $this->faker->postcode(),
             'longitude' => 14.3271819,
-            'latitude' => 120.9408174
+            'latitude' => 120.9408174,
+            'phone_no' => $this->faker->phoneNumber()
         ];
     }
 }

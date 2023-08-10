@@ -34,6 +34,7 @@ class BusinessResource extends Resource
                 Forms\Components\TextInput::make('business_name')
                     ->columnSpanFull()
                     ->required(),
+                Forms\Components\TextInput::make('phone_no')->required(),
                 Forms\Components\TextInput::make('city'),
                 Forms\Components\TextInput::make('postal'),
                 Forms\Components\TextInput::make('longitude')

@@ -57,13 +57,14 @@ class OrderComponent extends Component
         $subTotal = 0;
         $this->total = 0;
 
-        foreach ($this->cart as $value) {
+        foreach ($this->cart as $key => $value) {
             $subTotal += $value['menu']['selling_price'];
             foreach ($value['items'] as $item) {
                 $subTotal += $item['selling_price'];
             }
 
             $subTotal *= $value['quantity'];
+            $this->cart[$key]['sub_total'] = $subTotal;
         }
 
         $this->total += $subTotal + $this->deliveryFee;

@@ -22,7 +22,8 @@ class Order extends Model
         'email',
         'total',
         'delivery_fee',
-        'order_status'
+        'order_status',
+        'payment_method'
     ];
 
     public function orderPayment(): HasOne

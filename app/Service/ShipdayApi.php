@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Service;
+
 use Illuminate\Support\Facades\Http;
 
 class ShipdayApi
@@ -14,84 +16,86 @@ class ShipdayApi
     {
         $this->baseURL = 'https://api.shipday.com/';
 
-        $this->apiKey = 'BootbPAwUR.OuyGD3eqQw7c1JGiKA4d';
+        $this->apiKey = config('shipday.api_key');
 
         $this->client = Http::withHeaders([
-            "accept: application/json",
-            "content-type: application/json",
-            "x-api-key: $this->apiKey"
+            'Authorization' => "Basic $this->apiKey",
+            'accept' => 'application/json',
+            'content-type' => 'application/json',
+            'x-api-key' => $this->apiKey
         ]);
     }
 
-    public function insertOrder($order, $orderItems)
+    public function insertOrder($order, $orderDetails, $business)
     {
-        $reponse = $this->client->post(
-            $this->baseURL . 'orders',
-            [
-                'orderNumber' => $order['id'],
-                'customerName' => $order['firt_name'] . ' ' . $order['last_name'],
-                'customerAddress' => $order['address'],
-                'customerEmail' => $order['email'],
-                'customerPhoneNumber' => $order['phone_no'],
-                'restaurantName' => 'Popeyes Louisiana Kitchen',
-                'restaurantAddress' => '890 Geneva Ave, San Francisco, CA 94112, United States',
-                'restaurantPhoneNumber' => '+14152392013',
-                'expectedDeliveryDate' => '2021-06-03',
-                'expectedPickupTime' => '17:45:00',
-                'expectedDeliveryTime' => '19:22:00',
-                'pickupLatitude' => 41.53867,
-                'pickupLongitude' => -72.0827,
-                'deliveryLatitude' => 41.53867,
-                'deliveryLongitude' => -72.0827,
-                'orderItem' => [
-                    [
-                        'name' => 'Popcorn Shrimp',
-                        'quantity' => 3,
-                        'unitPrice' => 2.99,
-                        'addOns' => [
-                            'string'
-                        ],
-                        'detail' => 'Please add less salt'
-                    ]
-                ],
-                'tips' => 2.5,
-                'tax' => 1.5,
-                'discountAmount' => 1.5,
-                'deliveryFee' => 3,
-                'totalOrderCost' => 13.47,
-                'pickupInstruction' => 'Will be ready in 15 minutes',
-                'deliveryInstruction' => 'fast',
-                'orderSource' => 'Seamless',
-                'additionalId' => '4532',
-                'clientRestaurantId' => 12,
-                'paymentMethod' => 'credit_card',
-                'creditCardType' => 'visa',
-                'creditCardId' => 1234,
-                'pickup' => [
-                    'address' => [
-                        'unit' => 'string',
-                        'street' => 'string',
-                        'city' => 'string',
-                        'state' => 'string',
-                        'zip' => 'string',
-                        'country' => 'string'
-                    ]
-                ],
-                'dropoff' => [
-                    'address' => [
-                        'unit' => 'string',
-                        'street' => 'string',
-                        'city' => 'string',
-                        'state' => 'string',
-                        'zip' => 'string',
-                        'country' => 'string'
-                    ]
-                ]
-            ]
-        );
+        $orderItems = [];
+        foreach ($orderDetails as $item) {
+            $orderItems[] =                     [
+                'name' => $item['menu_name'],
+                'quantity' => $item['quantity'],
+                'unitPrice' => $item['selling_price'],
+                'addOns' => collect($item['order_items'])->pluck('menu_variation_name')->toArray(),
+                'detail' => ''
+            ];
+        }
 
-        dd($reponse->collect());
+        $dropOff = [];
+        foreach ($orderItems as $item) {
+            $dropOff['address'] = [
+                'unit' => 'string',
+                'street' => 'string',
+                'city' => 'string',
+                'state' => 'string',
+                'zip' => 'string',
+                'country' => 'string'
+            ];
+        }
 
-        return $reponse->collect();
+        $params =  [
+            'orderNumber' => $order['id'],
+            'customerName' => $order['first_name'] . ' ' . $order['last_name'],
+            'customerAddress' => $order['address'],
+            'customerEmail' => $order['email'],
+            'customerPhoneNumber' => $order['phone_no'],
+            'restaurantName' => $business['business_name'],
+            'restaurantAddress' => $business['address'],
+            'restaurantPhoneNumber' => $business['phone_no'],
+            'expectedDeliveryDate' => now()->format('Y-m-d'),
+            'expectedPickupTime' => now()->addMinutes(40)->format('H:m:i'),
+            'expectedDeliveryTime' => now()->addMinutes(40)->format('H:m:i'),
+            'pickupLatitude' => $business['latitude'],
+            'pickupLongitude' => $business['longitude'],
+            'deliveryLatitude' => $business['latitude'],
+            'deliveryLongitude' => $business['longitude'],
+            'orderItem' => $orderItems,
+            'tips' => 0,
+            'tax' => 0,
+            'discountAmount' => 0,
+            'deliveryFee' => $order['delivery_fee'],
+            'totalOrderCost' => $order['total'],
+            'pickupInstruction' => 'Will be ready in 15 minutes',
+            'deliveryInstruction' => 'fast',
+            'orderSource' => 'Seamless',
+            'additionalId' => '',
+            'clientRestaurantId' => $business['id'],
+            'paymentMethod' => 'credit_card',
+            'creditCardType' => 'other',
+            'creditCardId' => 0,
+            // 'pickup' => [
+            //     'address' => [
+            //         'unit' => 'string',
+            //         'street' => 'string',
+            //         'city' => 'string',
+            //         'state' => 'string',
+            //         'zip' => 'string',
+            //         'country' => 'string'
+            //     ]
+            // ],
+            'dropoff' => $dropOff
+        ];
+
+        $response = $this->client->post($this->baseURL . 'orders', $params);
+  
+        return $response->collect();
     }
 }

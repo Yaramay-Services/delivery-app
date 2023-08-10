@@ -3,6 +3,7 @@
 namespace Modules\WebApp\Http\Livewire;
 
 use App\Enums\OrderStatusEnum;
+use App\Enums\PaymentMethodEnum;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\OrderDraft;
@@ -27,7 +28,7 @@ class CheckoutLivewire extends Component
 
     public $phoneNo;
 
-    public $paymentMethod = 'credit_debit';
+    public $paymentMethod = PaymentMethodEnum::STC_PAY;
 
     protected $queryString = ['overview'];
 
@@ -63,7 +64,8 @@ class CheckoutLivewire extends Component
             'email' => $validated['email'],
             'total' => $this->order['total'],
             'delivery_fee' => $this->order['delivery_fee'],
-            'order_status' => OrderStatusEnum::PENDING
+            'order_status' => OrderStatusEnum::PENDING,
+            'payment_method' => $this->paymentMethod
         ]);
 
         foreach ($this->order['cart'] as $key => $cart) {
@@ -72,9 +74,10 @@ class CheckoutLivewire extends Component
                 'business_id' => $cart['menu']['business_id'],
                 'menu_id' => $cart['menu']['id'],
                 'group' => $key,
+                'quantity' => $cart['quantity'],
                 'menu_name' => $cart['menu']['menu_name'],
-                'price' => $cart['menu']['price'],
-                'selling_price' => $cart['menu']['selling_price']
+                'selling_price' => $cart['menu']['selling_price'],
+                'sub_total' => $cart['sub_total'],
             ]);
             foreach ($cart['items'] as $item) {
                 OrderItems::create([

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('total');
             $table->float('delivery_fee');
             $table->string('order_status');
+            $table->string('payment_method');
             $table->softDeletes();
             $table->timestamps();
         });

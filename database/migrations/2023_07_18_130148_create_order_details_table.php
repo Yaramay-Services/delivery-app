@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('menu_id')->constrained();
             $table->text('group')->nullable();
             $table->string('menu_name');
-            $table->float('price');
+            $table->integer('quantity');
+            $table->float('sub_total');
             $table->float('selling_price');
             $table->softDeletes();
             $table->timestamps();
