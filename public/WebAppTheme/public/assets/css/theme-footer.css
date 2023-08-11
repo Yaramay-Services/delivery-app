@@ -45,7 +45,8 @@
   }
   
   #footer .footer-top .social-links a:hover {
-    background: #65c9cd;
+    /* background: #65c9cd; */
+    background: #C2000C;
     text-decoration: none;
   }
   
@@ -125,7 +126,8 @@
   }
   
   #footer .footer-top .footer-newsletter form input[type="submit"]:hover {
-    background: #65c9cd;
+    /* background: #65c9cd; */
+    background: #C2000C;
   }
   
   #footer .copyright {
