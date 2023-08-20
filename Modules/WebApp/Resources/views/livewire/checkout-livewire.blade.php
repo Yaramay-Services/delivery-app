@@ -2,8 +2,8 @@
     <section id="testimonial">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="card shadow">
+                <div class="col-md-5 col-sm-8"> <!--class="col-md-5" -->
+                    <div class="card shadow mt-4">
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
                                 <h4>SHIPPING ADDRESS</h4>
@@ -57,9 +57,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12"></div>
-                <div class="col-md-5">
-                    <div class="card shadow mt-4" wire:ignore>
+                <!-- <div class="col-12"></div> -->
+                <div class="col-md-5 col-sm-8"> <!--class="col-md-5" -->
+                    <div class="card shadow mt-4" wire:ignore> <!--class="mt-4"-->
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
                                 <h4>ORDER SUMMARY</h4>
