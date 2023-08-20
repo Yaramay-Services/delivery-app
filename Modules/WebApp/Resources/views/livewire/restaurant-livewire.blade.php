@@ -73,10 +73,10 @@
 
 <style scoped>
     .card-restaurant:hover {
-        box-shadow: 1px 1px 10px 0px;
+        box-shadow: 1px 1px 10px 0px #dc3545;
     }
 
     .card-restaurant:active {
-        box-shadow: 1px 1px 18px 0px;
+        box-shadow: 1px 1px 18px 0px #dc3545;
     }
 </style>
