@@ -70,6 +70,15 @@
             <div class="col-lg-4 text-lg-end text-center"><a class="btn btn-lg text-800 me-4" href="#"
                     role="button">VIEW ALL <i class="fas fa-chevron-right ms-2"></i></a></div>
             <div class="col-lg-auto position-relative">
+                <!-- <button class="carousel-control-prev s-icon-prev carousel-icon" type="button"
+                    data-bs-target="#carouselSearchByFood" data-bs-slide="prev"><span
+                        class="carousel-control-prev-icon hover-top-shadow" aria-hidden="true"></span><span
+                        class="visually-hidden">Previous</span></button>
+                <button class="carousel-control-next s-icon-next carousel-icon" type="button"
+                    data-bs-target="#carouselSearchByFood" data-bs-slide="next"><span
+                        class="carousel-control-next-icon hover-top-shadow" aria-hidden="true"></span><span
+                        class="visually-hidden">Next</span></button> -->
+                        
                 <button class="carousel-control-prev s-icon-prev carousel-icon" type="button"
                     data-bs-target="#carouselSearchByFood" data-bs-slide="prev"><span
                         class="carousel-control-prev-icon hover-top-shadow" aria-hidden="true"></span><span
@@ -357,7 +366,7 @@
 
 <section class="py-0">
     <div class="bg-holder"
-        style="background-image:url(/WebAppTheme/public/assets/img/gallery/cta-two-bg.png);background-position:center;background-size:cover;">
+        style="background-image:url(/WebAppTheme/public/assets/img/gallery/cta-three-bg.jpg);background-position:center;background-size:cover;">
     </div>
     <!--/.bg-holder-->
 
