@@ -33,7 +33,7 @@
     font-size: 18px;
     display: inline-block;
     background: #dc3545;
-    color: #fff;
+    color: #fff !important;
     line-height: 1;
     padding: 8px 0;
     margin-right: 4px;
@@ -46,6 +46,7 @@
   
   #footer .footer-top .social-links a:hover {
     /* background: #65c9cd; */
+    color: #fff !important;
     background: #C2000C;
     text-decoration: none;
   }
